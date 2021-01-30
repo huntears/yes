@@ -99,6 +99,12 @@ public:
         return res;
     }
 
+    friend std::ostream& operator <<(std::ostream &os, Vec3 const &obj)
+    {
+        os << "<" << obj.x << ", " << obj.y << ", " << obj.z << ">";
+        return os;
+    }
+
     bool operator == (Vec3 const &obj)
     {
         return x == obj.x && y == obj.y && z == obj.z;

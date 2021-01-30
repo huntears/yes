@@ -3,6 +3,7 @@
 #include "Vec2.hpp"
 #include "Vec3.hpp"
 #include "Vec4.hpp"
+#include "Mat.hpp"
 
 int main(void)
 {
@@ -15,10 +16,13 @@ int main(void)
     Vec4<float> ah(bruh, 3.0);
 
     std::cout << "Vec4: " << std::endl <<
-        ah.x << std::endl <<
-        ah.y << std::endl <<
-        ah.z << std::endl <<
-        ah.w << std::endl;
+        ah << std::endl;
+
+    Mat<int, 10> oui;
+    Mat<int, 10> non;
+
+    std::cout << "Mat10: " << std::endl <<
+        oui - non << std::endl;
 
     return 0;
 }
