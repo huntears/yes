@@ -16,13 +16,17 @@ int main(void)
     Vec4<float> ah(bruh, 3.0);
 
     std::cout << "Vec4: " << std::endl <<
-              ah << std::endl;
+        ah << std::endl;
 
     Mat<int, 10> oui;
     Mat<int, 10> non;
+    Mat<double, 4> identity;
 
     std::cout << "Mat10: " << std::endl <<
-              oui - non << std::endl;
+        oui - non << std::endl;
+
+    std::cout << "Mat4 Identity: " << std::endl <<
+        identity << std::endl;
 
     return 0;
 }

@@ -91,6 +91,12 @@ public:
         return res;
     }
 
+    friend std::ostream& operator <<(std::ostream &os, Vec2 const &obj)
+    {
+        os << "<" << obj.x << ", " << obj.y << ">";
+        return os;
+    }
+
     bool operator == (Vec2 const &obj)
     {
         return x == obj.x && y == obj.y;

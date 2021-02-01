@@ -116,6 +116,12 @@ public:
         return res;
     }
 
+    friend std::ostream& operator <<(std::ostream &os, Vec4 const &obj)
+    {
+        os << "<" << obj.x << ", " << obj.y << ", " << obj.z << ", " << obj.w << ">";
+        return os;
+    }
+
     bool operator == (Vec4 const &obj)
     {
         return x == obj.x && y == obj.y && z == obj.z && w == obj.w;
