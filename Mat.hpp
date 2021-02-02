@@ -28,7 +28,7 @@ public:
         return *this;
     }
 
-    friend std::ostream& operator <<(std::ostream &os, Mat const &obj)
+    friend std::ostream& operator <<(std::ostream &os, const Mat &obj)
     {
         for (int i = 0; i < N; i++) {
             os << "[";
@@ -45,7 +45,7 @@ public:
         return os;
     }
 
-    Mat operator +(Mat const &obj)
+    Mat operator +(const Mat &obj)
     {
         Mat<T, N> result;
 
@@ -57,7 +57,7 @@ public:
         return result;
     }
 
-    Mat operator -(Mat const &obj)
+    Mat operator -(const Mat &obj)
     {
         Mat<T, N> result;
 

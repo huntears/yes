@@ -13,21 +13,21 @@ class Vec2
 public:
     Vec2(T x = 0, T y = 0): x(x), y(y) {}
 
-    Vec2(Vec2 const &obj): Vec2(obj.x, obj.y) {}
+    Vec2(const Vec2 &obj): Vec2(obj.x, obj.y) {}
 
-    Vec2(Vec2 const *obj): Vec2(*obj) {}
+    Vec2(const Vec2 *obj): Vec2(*obj) {}
 
     T x;
     T y;
 
-    Vec2& operator = (Vec2 const &obj)
+    Vec2& operator = (const Vec2 &obj)
     {
         x = obj.x;
         y = obj.y;
         return *this;
     }
 
-    Vec2 operator + (Vec2 const &obj)
+    Vec2 operator + (const Vec2 &obj)
     {
         Vec2 res;
         res.x = x + obj.x;
@@ -35,7 +35,7 @@ public:
         return res;
     }
 
-    Vec2 operator - (Vec2 const &obj)
+    Vec2 operator - (const Vec2 &obj)
     {
         Vec2 res;
         res.x = x - obj.x;
@@ -43,7 +43,7 @@ public:
         return res;
     }
 
-    Vec2 operator * (Vec2 const &obj)
+    Vec2 operator * (const Vec2 &obj)
     {
         Vec2 res;
         res.x = x * obj.x;
@@ -51,7 +51,7 @@ public:
         return res;
     }
 
-    Vec2 operator / (Vec2 const &obj)
+    Vec2 operator / (const Vec2 &obj)
     {
         Vec2 res;
         res.x = x / obj.x;
@@ -59,7 +59,7 @@ public:
         return res;
     }
 
-    Vec2 operator + (T const &obj)
+    Vec2 operator + (const T &obj)
     {
         Vec2 res;
         res.x = x + obj;
@@ -67,7 +67,7 @@ public:
         return res;
     }
 
-    Vec2 operator - (T const &obj)
+    Vec2 operator - (const T &obj)
     {
         Vec2 res;
         res.x = x - obj;
@@ -75,7 +75,7 @@ public:
         return res;
     }
 
-    Vec2 operator * (T const &obj)
+    Vec2 operator * (const T &obj)
     {
         Vec2 res;
         res.x = x * obj;
@@ -83,7 +83,7 @@ public:
         return res;
     }
 
-    Vec2 operator / (T const &obj)
+    Vec2 operator / (const T &obj)
     {
         Vec2 res;
         res.x = x / obj;
@@ -91,23 +91,23 @@ public:
         return res;
     }
 
-    friend std::ostream& operator <<(std::ostream &os, Vec2 const &obj)
+    friend std::ostream& operator <<(std::ostream &os, const Vec2 &obj)
     {
         os << "<" << obj.x << ", " << obj.y << ">";
         return os;
     }
 
-    bool operator == (Vec2 const &obj)
+    bool operator == (const Vec2 &obj)
     {
         return x == obj.x && y == obj.y;
     }
 
-    bool operator != (Vec2 const &obj)
+    bool operator != (const Vec2 &obj)
     {
         return x != obj.x || y != obj.y;
     }
 
-    T dot(Vec2 const &obj)
+    T dot(const Vec2 &obj)
     {
         return x * obj.x + y * obj.y;
     }
@@ -133,7 +133,7 @@ public:
         y = std::abs(y);
     }
 
-    T distance(Vec2 const &obj)
+    T distance(const Vec2 &obj)
     {
         return (*this - obj).length();
     }

@@ -16,18 +16,18 @@ class Vec4
 public:
     Vec4(T x = 0, T y = 0, T z = 0, T w = 0): x(x), y(y), z(z), w(w) {}
 
-    Vec4(Vec4 const &obj): Vec4(obj.x, obj.y, obj.z, obj.w) {}
+    Vec4(const Vec4 &obj): Vec4(obj.x, obj.y, obj.z, obj.w) {}
 
-    Vec4(Vec4 const *obj): Vec4(*obj) {}
+    Vec4(const Vec4 *obj): Vec4(*obj) {}
 
-    Vec4(Vec3<T> const &obj, T w = 0): Vec4(obj.x, obj.y, obj.z, w) {}
+    Vec4(const Vec3<T> &obj, T w = 0): Vec4(obj.x, obj.y, obj.z, w) {}
 
     T x;
     T y;
     T z;
     T w;
 
-    Vec4& operator = (Vec4 const &obj)
+    Vec4& operator = (const Vec4 &obj)
     {
         x = obj.x;
         y = obj.y;
@@ -36,7 +36,7 @@ public:
         return *this;
     }
 
-    Vec4 operator + (Vec4 const &obj)
+    Vec4 operator + (const Vec4 &obj)
     {
         Vec4 res;
         res.x = x + obj.x;
@@ -46,7 +46,7 @@ public:
         return res;
     }
 
-    Vec4 operator - (Vec4 const &obj)
+    Vec4 operator - (const Vec4 &obj)
     {
         Vec4 res;
         res.x = x - obj.x;
@@ -56,7 +56,7 @@ public:
         return res;
     }
 
-    Vec4 operator * (Vec4 const &obj)
+    Vec4 operator * (const Vec4 &obj)
     {
         Vec4 res;
         res.x = x * obj.x;
@@ -66,7 +66,7 @@ public:
         return res;
     }
 
-    Vec4 operator / (Vec4 const &obj)
+    Vec4 operator / (const Vec4 &obj)
     {
         Vec4 res;
         res.x = x / obj.x;
@@ -76,7 +76,7 @@ public:
         return res;
     }
 
-    Vec4 operator + (T const &obj)
+    Vec4 operator + (const T &obj)
     {
         Vec4 res;
         res.x = x + obj;
@@ -86,7 +86,7 @@ public:
         return res;
     }
 
-    Vec4 operator - (T const &obj)
+    Vec4 operator - (const T &obj)
     {
         Vec4 res;
         res.x = x - obj;
@@ -96,7 +96,7 @@ public:
         return res;
     }
 
-    Vec4 operator * (T const &obj)
+    Vec4 operator * (const T &obj)
     {
         Vec4 res;
         res.x = x * obj;
@@ -106,7 +106,7 @@ public:
         return res;
     }
 
-    Vec4 operator / (T const &obj)
+    Vec4 operator / (const T &obj)
     {
         Vec4 res;
         res.x = x / obj;
@@ -116,23 +116,23 @@ public:
         return res;
     }
 
-    friend std::ostream& operator <<(std::ostream &os, Vec4 const &obj)
+    friend std::ostream& operator <<(std::ostream &os, const Vec4 &obj)
     {
         os << "<" << obj.x << ", " << obj.y << ", " << obj.z << ", " << obj.w << ">";
         return os;
     }
 
-    bool operator == (Vec4 const &obj)
+    bool operator == (const Vec4 &obj)
     {
         return x == obj.x && y == obj.y && z == obj.z && w == obj.w;
     }
 
-    bool operator != (Vec4 const &obj)
+    bool operator != (const Vec4 &obj)
     {
         return x != obj.x || y != obj.y || z != obj.z || w != obj.w;
     }
 
-    T dot(Vec4 const &obj)
+    T dot(const Vec4 &obj)
     {
         return x * obj.x + y * obj.y + z * obj.z + w * obj.w;
     }
@@ -160,7 +160,7 @@ public:
         w = std::abs(w);
     }
 
-    T distance(Vec4 const &obj)
+    T distance(const Vec4 &obj)
     {
         return (*this - obj).length();
     }

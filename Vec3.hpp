@@ -15,15 +15,15 @@ class Vec3
 public:
     Vec3(T x = 0, T y = 0, T z = 0): x(x), y(y), z(z) {}
 
-    Vec3(Vec3 const &obj): Vec3(obj.x, obj.y, obj.z) {}
+    Vec3(const Vec3 &obj): Vec3(obj.x, obj.y, obj.z) {}
 
-    Vec3(Vec3 const *obj): Vec3(*obj) {}
+    Vec3(const Vec3 *obj): Vec3(*obj) {}
 
     T x;
     T y;
     T z;
 
-    Vec3& operator = (Vec3 const &obj)
+    Vec3& operator = (const Vec3 &obj)
     {
         x = obj.x;
         y = obj.y;
@@ -31,7 +31,7 @@ public:
         return *this;
     }
 
-    Vec3 operator + (Vec3 const &obj)
+    Vec3 operator + (const Vec3 &obj)
     {
         Vec3 res;
         res.x = x + obj.x;
@@ -40,7 +40,7 @@ public:
         return res;
     }
 
-    Vec3 operator - (Vec3 const &obj)
+    Vec3 operator - (const Vec3 &obj)
     {
         Vec3 res;
         res.x = x - obj.x;
@@ -49,7 +49,7 @@ public:
         return res;
     }
 
-    Vec3 operator * (Vec3 const &obj)
+    Vec3 operator * (const Vec3 &obj)
     {
         Vec3 res;
         res.x = x * obj.x;
@@ -58,7 +58,7 @@ public:
         return res;
     }
 
-    Vec3 operator / (Vec3 const &obj)
+    Vec3 operator / (const Vec3 &obj)
     {
         Vec3 res;
         res.x = x / obj.x;
@@ -67,7 +67,7 @@ public:
         return res;
     }
 
-    Vec3 operator + (T const &obj)
+    Vec3 operator + (const T &obj)
     {
         Vec3 res;
         res.x = x + obj;
@@ -76,7 +76,7 @@ public:
         return res;
     }
 
-    Vec3 operator - (T const &obj)
+    Vec3 operator - (const T &obj)
     {
         Vec3 res;
         res.x = x - obj;
@@ -85,7 +85,7 @@ public:
         return res;
     }
 
-    Vec3 operator * (T const &obj)
+    Vec3 operator * (const T &obj)
     {
         Vec3 res;
         res.x = x * obj;
@@ -94,7 +94,7 @@ public:
         return res;
     }
 
-    Vec3 operator / (T const &obj)
+    Vec3 operator / (const T &obj)
     {
         Vec3 res;
         res.x = x / obj;
@@ -103,23 +103,23 @@ public:
         return res;
     }
 
-    friend std::ostream& operator <<(std::ostream &os, Vec3 const &obj)
+    friend std::ostream& operator <<(std::ostream &os, const Vec3 &obj)
     {
         os << "<" << obj.x << ", " << obj.y << ", " << obj.z << ">";
         return os;
     }
 
-    bool operator == (Vec3 const &obj)
+    bool operator == (const Vec3 &obj)
     {
         return x == obj.x && y == obj.y && z == obj.z;
     }
 
-    bool operator != (Vec3 const &obj)
+    bool operator != (const Vec3 &obj)
     {
         return x != obj.x || y != obj.y || z != obj.z;
     }
 
-    T dot(Vec3 const &obj)
+    T dot(const Vec3 &obj)
     {
         return x * obj.x + y * obj.y + z * obj.z;
     }
@@ -146,12 +146,12 @@ public:
         z = std::abs(z);
     }
 
-    T distance(Vec3 const &obj)
+    T distance(const Vec3 &obj)
     {
         return (*this - obj).length();
     }
 
-    Vec3 cross(Vec3 const &obj)
+    Vec3 cross(const Vec3 &obj)
     {
         return Vec3(
                 y * obj.z - obj.y * z,

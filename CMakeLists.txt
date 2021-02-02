@@ -3,4 +3,4 @@ project(libyes)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(libyes main.cpp Vec2.hpp Vec3.hpp Vec4.hpp Mat.hpp)
+add_executable(libyes main.cpp Vec2.hpp Vec3.hpp Vec4.hpp Mat.hpp Vec.hpp)
