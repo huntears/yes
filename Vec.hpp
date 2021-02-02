@@ -6,119 +6,156 @@
 #define LIBYES_VEC_HPP
 
 #include <cmath>
+#include <vector>
 
 #include "Vec3.hpp"
 #include "Vec2.hpp"
 
-template<typename T, int N>
+template<typename T>
 class Vec
 {
+private:
+    const int size;
 public:
-    Vec(T data[N]): data(data), {} //ça je suis moyen sur lol
+    const int getSize() const {
+        return size;
+    }
+
+public:
+    Vec(const std::initializer_list<T> &init): data {init}, size(init.size()) {} //ça je suis moyen sur lol
+
+    Vec(const std::vector<T> &init): data{init}, size(init.size()) {}
 
     Vec(const Vec &obj): Vec(obj.data) {}
 
     Vec(const Vec *obj): Vec(*obj) {}
 
-    Vec(const Vec<T> &obj, T data = 0): Vec(obj.data) {}
-
-    T data[N];
+    std::vector<T> data;
 
     Vec &operator =(const Vec &obj)
     {
-        for (int i = 0; i < N; i++)
+        for (int i = 0; i < size; i++)
             data[i] = obj.data[i];
         return *this;
     }
 
     Vec operator + (const Vec &obj)
     {
-        Vec res;
-        for (int i = 0; i < N; i++)
+        Vec res(data);
+        for (int i = 0; i < size; i++)
             res.data[i] = data[i] + obj.data[i];
         return res;
     }
 
     Vec operator - (const Vec &obj)
     {
-        Vec res;
-        for (int i = 0; i < N; i++)
+        Vec res(data);
+        for (int i = 0; i < size; i++)
                 res.data[i] = data[i] - obj.data[i];
         return res;
     }
 
     Vec operator * (const Vec &obj)
     {
-        Vec res;
-        for (int i = 0; i < N; i++)
+        Vec res(data);
+        for (int i = 0; i < size; i++)
             res.data[i] = data[i] * obj.data[i];
         return res;
     }
 
     Vec operator / (const Vec &obj)
     {
-        Vec res;
-        for (int i = 0; i < N; i++)
+        Vec res(data);
+        for (int i = 0; i < size; i++)
             res.data[i] = data[i] / obj.data[i];
         return res;
     }
 
     Vec operator + (const T &obj)
     {
-        Vec4 res;
-        for (int i = 0; i < N; i++)
+        Vec res(data);
+        for (int i = 0; i < size; i++)
             res.data[i] = data[i] + obj;
         return res;
     }
 
     Vec operator - (const T &obj)
     {
-        Vec4 res;
-        for (int i = 0; i < N; i++)
+        Vec res(data);
+        for (int i = 0; i < size; i++)
             res.data[i] = data[i] - obj;
         return res;
     }
 
     Vec operator * (const T &obj)
     {
-        Vec4 res;
-        for (int i = 0; i < N; i++)
+        Vec res(data);
+        for (int i = 0; i < size; i++)
             res.data[i] = data[i] * obj;
         return res;
     }
 
     Vec operator / (const T &obj)
     {
-        Vec4 res;
-        for (int i = 0; i < N; i++)
+        Vec res(data);
+        for (int i = 0; i < size; i++)
             res.data[i] = data[i] / obj;
         return res;
     }
 
     friend std::ostream& operator <<(std::ostream &os, const Vec &obj)
     {
-        os << "<" << obj.x << ", " << obj.y << ", " << obj.z << ", " << obj.w << ">";
+        os << "<";
+        for (int i = 0; i < obj.getSize(); i++) {
+            os << obj.data[i];
+            if (i != obj.getSize() - 1)
+                os << ", ";
+        }
+        os << ">";
         return os;
     }
 
     bool operator == (const Vec &obj)
     {
-        return x == obj.x && y == obj.y && z == obj.z && w == obj.w;
+        for (int i = 0; i < size; i++)
+            if (data[i] != obj.data[i])
+                return false;
+        return true;
     }
 
     bool operator != (const Vec &obj)
     {
-        return x != obj.x || y != obj.y || z != obj.z || w != obj.w;
+        for (int i = 0; i < size; i++)
+            if (data[i] == obj.data[i])
+                return false;
+        return true;
     }
 
     T dot(const Vec &obj)
     {
-        return x * obj.x + y * obj.y + z * obj.z + w * obj.w;
+        T dotProduct = 0;
+        for (int i = 0; i < size; i++)
+            dotProduct += data[i] * obj.data[i];
+        return dotProduct;
+    }
+
+    Vec cross(const Vec &obj)
+    {
+        if (obj.data.size() != 3)
+            throw "Cross product only possible with Vec3";
+        return Vec(
+                {data[1] * obj.data[2] - obj.data[1] * data[2],
+                 data[2] * obj.data[0] - obj.data[2] * data[0],
+                 data[0] * obj.data[1] - obj.data[0] * data[1]}
+        );
     }
 
     T lengthSquared()
     {
-        return x * x + y * y + z * z + w * w;
+        T toReturn = 0;
+        for (int i = 0; i < size; i++)
+            toReturn += data[i] * data[i];
+        return toReturn;
     }
 
     T length()
@@ -133,10 +170,8 @@ public:
 
     void abs()
     {
-        x = std::abs(x);
-        y = std::abs(y);
-        z = std::abs(z);
-        w = std::abs(w);
+        for (int i = 0; i < size; i++)
+            data[i] = std::abs(data[i]);
     }
 
     T distance(const Vec &obj)
@@ -144,22 +179,6 @@ public:
         return (*this - obj).length();
     }
 
-    Vec3<T> xyz()
-    {
-        return Vec3<T>(
-                x,
-                y,
-                z
-        );
-    }
-
-    Vec2<T> xy()
-    {
-        return Vec2<T>(
-                x,
-                y
-        );
-    }
 };
 
 #endif //LIBYES_VEC_HPP

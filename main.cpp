@@ -8,16 +8,12 @@
 
 int main(void)
 {
-    Vec<float, 2> issou(4.0, 5.0);
-    Vec<float, 2> wat(0.0, 0.0);
+    Vec<int> wtf({1, 2, 3});
+    std::cout << "Vec : " << wtf << std::endl;
+    Vec<float> issou({2.0, 4.0});
+    Vec<float> wat({0.0, 0.0});
 
     std::cout << "Distance: " << issou.distance(wat) << std::endl;
-
-    Vec<float, 3> bruh(0.0, 1.0, 2.0);
-    Vec<float, 4> ah(bruh, 3.0);
-
-    std::cout << "Vec4: " << std::endl <<
-        ah << std::endl;
 
     Mat<int, 10> oui;
     Mat<int, 10> non;
@@ -28,6 +24,5 @@ int main(void)
 
     std::cout << "Mat4 Identity: " << std::endl <<
         identity << std::endl;
-
     return 0;
 }
